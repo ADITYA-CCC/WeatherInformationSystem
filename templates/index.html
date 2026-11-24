@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Information System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🌦️ Weather Information System</h1>
+        <p>Check real-time weather information for your city</p>
+
+        <form action="/weather" method="GET">
+            <input
+                type="text"
+                name="city"
+                placeholder="Enter city name..."
+                required
+            >
+            <button type="submit">Search Weather</button>
+        </form>
+
+        {% if error %}
+            <div class="weather-box">
+                <p style="color:red;">{{ error }}</p>
+            </div>
+        {% endif %}
+
+        {% if weather %}
+
+            <div class="weather-box">
+
+                <h2>{{ weather.city }}, {{ weather.country }}</h2>
+
+                <h1>{{ weather.temperature }} °C</h1>
+
+                <h3>Current Weather Details</h3>
+
+                <p>Feels Like: {{ weather.feels_like }} °C</p>
+
+                <p>Humidity: {{ weather.humidity }} %</p>
+
+                <p>Wind Speed: {{ weather.wind }} km/h</p>
+
+                <p>Precipitation: {{ weather.precipitation }} mm</p>
+
+            </div>
+
+        {% endif %}
+
+        <footer>
+            <p>Weather Information System | Mini Project</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
